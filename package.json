@@ -9,12 +9,14 @@
   },
   "contributors": [
   ],
+  "homepage": "http://code.woong.org/wcwidth.js",
   "repository": {
     "type": "hg",
-    "url": "http://code.woong.org/hg/wcwidth"
+    "url": "http://code.woong.org/hg/wcwidth.js"
   },
   "bugs": {
-    "url": "http://code.woong.org/wcwidth/trac"
+    "url": "http://code.woong.org/wcwidth.js/trac",
+    "email": "woong.jun@gmail.com"
   },
   "main": "wcwidth.js",
   "dependencies": {
