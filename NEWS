@@ -1,4 +1,6 @@
   What's New in wcwidth.js?
   =========================
 
+  2012-10-16  0.0.2 released.
+  2012-10-16  Using wcwidth not invoking it checked.
   2012-10-12  First release.
