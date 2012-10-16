@@ -211,6 +211,8 @@ module.exports = wcwidth = function (option) {
         return s;
     };
 
+    assert(_.isUndefined(option) || _.isObject(option));
+
     option = _.extend({
         nul:     0,
         control: -1
