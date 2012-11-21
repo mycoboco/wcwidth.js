@@ -49,4 +49,4 @@ accepts a code value that can be obtained by the `charCodeAt()` method.
 For the copyright issues, see the accompanying `LICENSE` file.
 
 If you have a question or suggestion, do not hesitate to contact me via email
-<woong.jun@gmail.com> or web <http://code.woong.org/>.
+(woong.jun at gmail.com) or web (http://code.woong.org/).
