@@ -3,12 +3,13 @@ wcwidth.js: A JavaScript Porting of Markus Kuhn's wcwidth() Implementation
 
 `wcwidth.js` is a simple JavaScript porting of `wcwidth()` implemented in C by
 Markus Kuhn (the original implementation can be found on
-http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c). `wcwidth()` and its string
-version, `wcswidth()` are defined by IEEE Std 1002.1-2001, a.k.a. POSIX.1-2001,
-and return the number of columns used to represent the given wide character and
-string. Markus's implementation assumes the wide character given to those
-functions to be encoded in ISO 10646, which is almost true for JavaScript's
-characters.
+http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
+
+`wcwidth()` and its string version, `wcswidth()` are defined by IEEE Std
+1002.1-2001, a.k.a. POSIX.1-2001, and return the number of columns used to
+represent the given wide character and string. Markus's implementation assumes
+the wide character given to those functions to be encoded in ISO 10646, which
+is almost true for JavaScript's characters.
 
 For convenience, `wcwidth.js` sets the getter of the property named `wcwidth`
 for the string type. You don't need to invoke a function to get the width of
