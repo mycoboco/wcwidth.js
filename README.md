@@ -47,7 +47,8 @@ accepts a code value that can be obtained by the `charCodeAt()` method.
     console.log(wcwidth('글'.charCodeAt(0));    // prints 2
     console.log(wcwidth('한글'));               // prints 4
 
-For the copyright issues, see the accompanying `LICENSE` file.
+`INSTALL.md` explains how to build and install the library. For the copyright
+issues, see the accompanying `LICENSE.md` file.
 
 If you have a question or suggestion, do not hesitate to contact me via email
 (woong.jun at gmail.com) or web (http://code.woong.org/).
