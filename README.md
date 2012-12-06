@@ -1,9 +1,8 @@
 wcwidth.js: A JavaScript Porting of Markus Kuhn's wcwidth() Implementation
 ==========================================================================
 
-`wcwidth.js` is a simple JavaScript porting of `wcwidth()` implemented in C by
-Markus Kuhn (the original implementation can be found on
-http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
+`wcwidth.js` is a simple JavaScript porting of `wcwidth()` implemented in C
+[by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
 
 `wcwidth()` and its string version, `wcswidth()` are defined by IEEE Std
 1002.1-2001, a.k.a. POSIX.1-2001, and return the number of columns used to

@@ -3,8 +3,8 @@ wcwidth.js: JavaScript Portng of Markus Kuhn's wcwidth() Implementation
 
 Copyright (C) 2012 by Jun Woong.
 
-This package is a JavaScript porting of Markus Kuhn's `wcwidth()`
-implementation distributed on http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c.
+This package is a JavaScript porting of `wcwidth()` implementation
+[by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
