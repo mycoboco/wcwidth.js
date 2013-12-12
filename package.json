@@ -11,11 +11,11 @@
   ],
   "homepage": "http://code.woong.org/wcwidth.js",
   "repository": {
-    "type": "hg",
-    "url": "http://code.woong.org/hg/wcwidth.js"
+    "type": "git",
+    "url": "https://github.com/mycoboco/wcwidth.js.git"
   },
   "bugs": {
-    "url": "http://code.woong.org/wcwidth.js/trac",
+    "url": "https://github.com/mycoboco/wcwidth.js/issues",
     "email": "woong.jun@gmail.com"
   },
   "main": "wcwidth.js",
