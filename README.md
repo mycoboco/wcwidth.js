@@ -16,20 +16,22 @@ strings, but inspecting the `wcwidth` property is enough. The following code
 snippet shows how to use `wcwidth.js`:
 
     var wcwidth = require('wcwidth')({
-        nul:     0,
-        control: -1
+        nul:         0,
+        control:     -1,
+        monkeypatch: true
     });    // equivalent to var wcwidth = require('wcwidth')();
 
     console.log("한글".wcwidth);    // prints 4
     console.log("\0".wcwidth);      // prints 0
     console.log("\t".wcwidth);      // prints -1
 
-The argument `{ nul: 0, control: -1 }` (which are the default values, in fact)
-tells `wcwidth.js` to return 0 for the NUL character and -1 for non-printable
-control characters. Setting a negative value to `nul` or `control` makes the
-`wcwidth` property set to -1 for any string that contains NUL or control
-characters respectively. If you plan to replace each control character with,
-say, `???` when printing, you can 'require' `wcwidth.js` as follows:
+The argument `{ nul: 0, control: -1, monkeypatch: true }` (which are the
+default values, in fact) tells `wcwidth.js` to return 0 for the NUL character
+and -1 for non-printable control characters. Setting a negative value to `nul`
+or `control` makes the `wcwidth` property set to -1 for any string that
+contains NUL or control characters respectively. If you plan to replace each
+control character with, say, `???` when printing, you can 'require'
+`wcwidth.js` as follows:
 
     var wcwidth = require('wcwidth')({
         control: 3
@@ -38,7 +40,17 @@ say, `???` when printing, you can 'require' `wcwidth.js` as follows:
     console.log("\t".wcwidth);    // prints 3
     console.log("\0".wcwidth);    // prints 0
 
-`wcwidth.js` also provides a methods. Since JavaScript has no character type,
+The last option `monkeypatch` allows `wcwidth.js` to monkey-patch
+`String.prototype` to provide the getter `wcwidth`. Even if it is convenient to
+have a getter that looks like the native one, it is sometimes unwanted as
+adding a getter into `String.prototype` may break node.js's module system; you
+are not guaranteed to have the version your code `require`s through the getter
+if other modules you're using also depend on other versions of `wcwidth.js`
+(thanks to [timoxley](https://github.com/timoxley) for the information). By
+setting `monkeypatch` to `false`, `wcwidth.js` touches no global object and
+provides no getter but a callable method explained below.
+
+`wcwidth.js` also provides a method. Since JavaScript has no character type,
 it is meaningless to have two versions while POSIX does for C. The method also
 accepts a code value that can be obtained by the `charCodeAt()` method.
 
