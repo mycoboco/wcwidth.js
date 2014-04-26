@@ -63,7 +63,6 @@
  *  Latest version: http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c
  */
 
-var assert = require('assert');
 var _ = require('underscore');
 
 
@@ -145,8 +144,6 @@ module.exports = wcwidth = function (option) {
             max = combining.length-1;
         var mid;
 
-        assert(_.isFinite(ucs));
-
         if (ucs < combining[0][0] || ucs > combining[max][1])
             return false;
         while (max >= min) {
@@ -164,11 +161,6 @@ module.exports = wcwidth = function (option) {
 
     // ucs = 'character' or charCode
     var wcwidth = function (ucs) {
-        assert((_.isString(ucs) && ucs.length === 1) || _.isFinite(ucs));
-
-        if (_.isString(ucs))
-            ucs = ucs.charCodeAt(0);
-
         // test for 8-bit control characters
         if (ucs === 0)
             return option.nul;
@@ -197,11 +189,11 @@ module.exports = wcwidth = function (option) {
     };
 
     var wcswidth = function (str) {
-        var i, n, s = 0;
+        var i, l, n, s = 0;
 
         if (_.isString(str))
-            for (i = 0; i < str.length; i++) {
-                if ((n = wcwidth(str.charAt(i))) < 0)
+            for (i=0, l=str.length; i < l; i++) {
+                if ((n = wcwidth(str.charCodeAt(i))) < 0)
                     return -1;
                 s += n;
             }
@@ -210,8 +202,6 @@ module.exports = wcwidth = function (option) {
 
         return s;
     };
-
-    assert(_.isUndefined(option) || _.isObject(option));
 
     option = _.extend({
         nul:     0,
