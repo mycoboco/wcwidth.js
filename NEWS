@@ -1,6 +1,7 @@
-What's New in wcwidth.js?
-=========================
+What's new in wcwidth?
+======================
 
+2014-09-18  Restructued code and added tests by Tim Oxley
 2014-04-26  0.0.4 released.
 2012-12-13  0.0.3 released.
 2012-12-12  Moved the repository to git/github.

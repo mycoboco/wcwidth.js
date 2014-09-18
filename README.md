@@ -1,62 +1,99 @@
-wcwidth.js: A JavaScript Porting of Markus Kuhn's wcwidth() Implementation
-==========================================================================
+wcwidth.js: a javascript porting of C's wcwidth()
+=================================================
 
 `wcwidth.js` is a simple JavaScript porting of `wcwidth()` implemented in C
-[by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
+[by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c) and maintained
+by [Jun Woong](https://github.com/mycoboco) and
+[Tim Oxley](https://github.com/timoxley).
 
-`wcwidth()` and its string version, `wcswidth()` are defined by IEEE Std
-1002.1-2001, a.k.a. POSIX.1-2001, and return the number of columns used to
-represent the given wide character and string. Markus's implementation assumes
-the wide character given to those functions to be encoded in ISO 10646, which
-is almost true for JavaScript's characters.
+[`wcwidth()`](http://www.opengroup.org/onlinepubs/007904975/functions/wcwidth.html)
+and its string version,
+[`wcswidth()`](http://www.opengroup.org/onlinepubs/007904975/functions/wcswidth.html)
+are defined by IEEE Std 1002.1-2001, a.k.a. POSIX.1-2001, and return the number
+of columns used to represent a wide character and string on fixed-width output
+devices like terminals. Markus's implementation assumes wide characters to be
+encoded in [ISO 10646](http://en.wikipedia.org/wiki/Universal_Character_Set),
+which is _almost_ true for JavaScript; _almost_ because JavaScript uses
+[UCS-2](http://en.wikipedia.org/wiki/UTF-16) and has problems with surrogate
+pairs.
 
-For convenience, `wcwidth.js` sets the getter of the property named `wcwidth`
-for the string type. You don't need to invoke a function to get the width of
-strings, but inspecting the `wcwidth` property is enough. The following code
-snippet shows how to use `wcwidth.js`:
+Following the original implementation, this library defines the column width of
+an ISO 10646 character as follows:
+- the null character (`U+0000`) has a column width of `opts.null` (whose
+  default value is 0);
+- other
+  [C0/C1 control characters](http://en.wikipedia.org/wiki/C0_and_C1_control_codes)
+  and `DEL` will lead to a column width of `opts.control` (whose default value
+  is 0);
+- non-spacing and enclosing combining characters
+  ([general category code](http://www.unicode.org/reports/tr44/#GC_Values_Table)
+  `Mn` or `Me`) in the Unicode database) have a column width of 0;
+- `SOFT HYPHEN` (`U+00AD`) has a column width of 1;
+- other format characters (general category code `Cf` in the Unicode database)
+  and `ZERO WIDTH SPACE` (`U+200B`) have a column width of 0;
+- Hangul Jamo medial vowels and final consonants (`U+1160`-`U+11FF`) have a
+  column width of 0;
+- spacing characters in the East Asian Wide (`W`) or East Asian Full-width
+  (`F`) category as defined in
+  [Unicode Technical Report #11](http://www.unicode.org/reports/tr11/) have a
+  column width of 2; and
+- all remaining characters (including all printable
+  [ISO 8859-1](http://en.wikipedia.org/wiki/ISO/IEC_8859-1) and
+  [WGL4 characters](http://en.wikipedia.org/wiki/Windows_Glyph_List_4), Unicode
+  control characters, etc.) have a column width of 1.
 
-    var wcwidth = require('wcwidth')({
-        nul:         0,
-        control:     -1,
-        monkeypatch: true
-    });    // equivalent to var wcwidth = require('wcwidth')();
+See the
+[documentation](https://github.com/mycoboco/wcwidth.js/blob/master/doc/index.md)
+from the C implementation for details.
 
-    console.log("한글".wcwidth);    // prints 4
-    console.log("\0".wcwidth);      // prints 0
-    console.log("\t".wcwidth);      // prints -1
+`wcwidth.js` is simple to use:
 
-The argument `{ nul: 0, control: -1, monkeypatch: true }` (which are the
-default values, in fact) tells `wcwidth.js` to return 0 for the NUL character
-and -1 for non-printable control characters. Setting a negative value to `nul`
-or `control` makes the `wcwidth` property set to -1 for any string that
-contains NUL or control characters respectively. If you plan to replace each
-control character with, say, `???` when printing, you can 'require'
-`wcwidth.js` as follows:
+    var wcwidth = require('wcwidth')
 
-    var wcwidth = require('wcwidth')({
+    wcwidth('한글')    // 4
+    wcwidth('\0')      // 0; NUL
+    wcwidth('\t')      // 0; control characters
+
+If you plan to replace `NUL` or control characters with, say, `???` before
+printing, use `wcwidth.config()` that returns a closure to run `wcwidth` with
+your configuration:
+
+    var mywidth = wcwidth.config({
+        nul:     3,
         control: 3
-    });    // leaving nul as 0
+    })
 
-    console.log("\t".wcwidth);    // prints 3
-    console.log("\0".wcwidth);    // prints 0
+    mywidth('\0\f')      // 6
+    mywidth('한\t글')    // 7
 
-The last option `monkeypatch` allows `wcwidth.js` to monkey-patch
-`String.prototype` to provide the getter `wcwidth`. Even if it is convenient to
-have a getter that looks like the native one, it is sometimes unwanted as
-adding a getter into `String.prototype` may break node.js's module system; you
-are not guaranteed to have the version your code `require`s through the getter
-if other modules you're using also depend on other versions of `wcwidth.js`
-(thanks to [timoxley](https://github.com/timoxley) for the information). By
-setting `monkeypatch` to `false`, `wcwidth.js` touches no global object and
-provides no getter but a callable method explained below.
+Setting these options to -1 gives a function that returns -1 for a string
+containing an instance of `NUL` or control characters:
 
-`wcwidth.js` also provides a method. Since JavaScript has no character type,
-it is meaningless to have two versions while POSIX does for C. The method also
-accepts a code value that can be obtained by the `charCodeAt()` method.
+    mywidth = wcwidth.config({
+        nul:     0,
+        control: -1
+    })
 
-    console.log(wcwidth('한'));                 // prints 2
-    console.log(wcwidth('글'.charCodeAt(0));    // prints 2
-    console.log(wcwidth('한글'));               // prints 4
+    mywidth('java\0script')    // 10
+    mywidth('java\tscript')    // -1
+
+This is useful when detecting if a string has non-printable characters.
+
+Due to the risk of monkey-patching, `wcwidth.js` no longer provides the
+`String` getter. Even if discouraged, you can still monkey-patch by yourself as
+follows:
+
+    String.prototype.__defineGetter__('wcwidth', function () {
+        return wcwidth(this);
+    })
+    '한글'.wcwidth    // 4
+
+JavaScript has no character type, thus meaningless to have two versions of
+`wcwidth` while POSIX does for C. `wcwidth` also accepts a code value obtained
+by `charCodeAt()`:
+
+    wcwidth('한')                  // prints 2
+    wcwidth('글'.charCodeAt(0))    // prints 2
 
 `INSTALL.md` explains how to build and install the library. For the copyright
 issues, see the accompanying `LICENSE.md` file.
