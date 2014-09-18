@@ -1,5 +1,5 @@
 /*
- *  test cases
+ *  test cases for wcwidth
  */
 
 "use strict"

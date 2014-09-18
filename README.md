@@ -1,7 +1,7 @@
-wcwidth.js: a javascript porting of C's wcwidth()
-=================================================
+wcwidth: a javascript porting of C's wcwidth()
+==============================================
 
-`wcwidth.js` is a simple JavaScript porting of `wcwidth()` implemented in C
+`wcwidth` is a simple JavaScript porting of `wcwidth()` implemented in C
 [by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c) and maintained
 by [Jun Woong](https://github.com/mycoboco) and
 [Tim Oxley](https://github.com/timoxley).
@@ -43,10 +43,10 @@ an ISO 10646 character as follows:
   control characters, etc.) have a column width of 1.
 
 See the
-[documentation](https://github.com/mycoboco/wcwidth.js/blob/master/doc/index.md)
+[documentation](https://github.com/mycoboco/wcwidth/blob/master/doc/index.md)
 from the C implementation for details.
 
-`wcwidth.js` is simple to use:
+`wcwidth` is simple to use:
 
     var wcwidth = require('wcwidth')
 
@@ -79,9 +79,8 @@ containing an instance of `NUL` or control characters:
 
 This is useful when detecting if a string has non-printable characters.
 
-Due to the risk of monkey-patching, `wcwidth.js` no longer provides the
-`String` getter. Even if discouraged, you can still monkey-patch by yourself as
-follows:
+Due to the risk of monkey-patching, `wcwidth` no longer provides the `String`
+getter. Even if discouraged, you can still monkey-patch by yourself as follows:
 
     String.prototype.__defineGetter__('wcwidth', function () {
         return wcwidth(this);

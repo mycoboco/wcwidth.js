@@ -1,5 +1,5 @@
-wcwidth.js: a javascript porting of C's wcwidth()
-=================================================
+wcwidth: a javascript porting of C's wcwidth()
+==============================================
 
 The following explanation comes from the
 [original C implementation](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c) with

@@ -14,13 +14,13 @@
       "url": "http://campjs.com/"
     }
   ],
-  "homepage": "http://code.woong.org/wcwidth.js",
+  "homepage": "http://code.woong.org/wcwidth",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mycoboco/wcwidth.js.git"
+    "url": "https://github.com/mycoboco/wcwidth.git"
   },
   "bugs": {
-    "url": "https://github.com/mycoboco/wcwidth.js/issues",
+    "url": "https://github.com/mycoboco/wcwidth/issues",
     "email": "woong.jun@gmail.com"
   },
   "main": "index.js",
