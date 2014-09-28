@@ -60,12 +60,19 @@ function wcwidth(ucs, opts) {
 
 
 function wcswidth(str, opts) {
+    var h, l
     var s = 0, n
 
     if (typeof str !== 'string') return wcwidth(str, opts)
 
     for (var i = 0; i < str.length; i++) {
-        n = wcwidth(str.charCodeAt(i), opts)
+        h = str.charCodeAt(i)
+        if (h >= 0xd800 && h <= 0xdbff) {
+            l = str.charCodeAt(++i)
+            if (l >= 0xdc00 && l <= 0xdfff) h = (h-0xd800)*0x400 + (l-0xdc00)+0x10000
+            else i--
+        }
+        n = wcwidth(h, opts)
         if (n < 0) return -1
         s += n
     }

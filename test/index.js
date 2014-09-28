@@ -39,9 +39,17 @@ test('handles Hangul Jamos', function(t) {
     t.end()
 })
 
-test('cannot handle surrogate pairs for now', function(t) {
-    t.strictEqual(wcwidth('\ud835\udca5\ud835\udcc8'), 4)    // should be 2
-    t.strictEqual(wcwidth('𝒥𝒶𝓋𝒶𝓈𝒸𝓇𝒾𝓅𝓉'), 20)                 // should be 10
+test('handle surrogate pairs', function(t) {
+    t.strictEqual(wcwidth('\ud835\udca5\ud835\udcc8'), 2)
+    t.strictEqual(wcwidth('𝒥𝒶𝓋𝒶𝓈𝒸𝓇𝒾𝓅𝓉'), 10)
+    t.strictEqual(wcwidth('\ud840\udc34\ud840\udd58'), 4)
+    t.end()
+})
+
+test('invalid sequences with surrogate high/low values', function(t) {
+    t.strictEqual(wcwidth('\ud835\u0065'), 2)
+    t.strictEqual(wcwidth('\u0065\udcc8'), 2)
+    t.strictEqual(wcwidth('a\ud835\u0065\u0065\udcc8z'), 6)
     t.end()
 })
 

@@ -2,9 +2,7 @@ wcwidth: a javascript porting of C's wcwidth()
 ==============================================
 
 `wcwidth` is a simple JavaScript porting of `wcwidth()` implemented in C
-[by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c) and maintained
-by [Jun Woong](https://github.com/mycoboco) and
-[Tim Oxley](https://github.com/timoxley).
+[by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
 
 [`wcwidth()`](http://www.opengroup.org/onlinepubs/007904975/functions/wcwidth.html)
 and its string version,
@@ -41,6 +39,9 @@ an ISO 10646 character as follows:
   [ISO 8859-1](http://en.wikipedia.org/wiki/ISO/IEC_8859-1) and
   [WGL4 characters](http://en.wikipedia.org/wiki/Windows_Glyph_List_4), Unicode
   control characters, etc.) have a column width of 1.
+
+A surrogate high or low value which constitutes no pair is considered to have a
+column width of 1 according to the behavior of widespread terminals.
 
 See the
 [documentation](https://github.com/mycoboco/wcwidth/blob/master/doc/index.md)
