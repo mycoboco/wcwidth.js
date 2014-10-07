@@ -13,7 +13,8 @@ devices like terminals. Markus's implementation assumes wide characters to be
 encoded in [ISO 10646](http://en.wikipedia.org/wiki/Universal_Character_Set),
 which is _almost_ true for JavaScript; _almost_ because JavaScript uses
 [UCS-2](http://en.wikipedia.org/wiki/UTF-16) and has problems with surrogate
-pairs.
+pairs. `wcwidth` converts surrogate pairs to Unicode code points to handle them
+correctly.
 
 Following the original implementation, this library defines the column width of
 an ISO 10646 character as follows:
