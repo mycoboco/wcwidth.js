@@ -1,7 +1,7 @@
 {
   "name": "wcwidth.js",
   "version": "1.0.0",
-  "description": "A JavaScript porting of C's wcwidth() and wcswidth()",
+  "description": "a javascript porting of C's wcwidth()",
   "author": {
     "name": "Woong Jun",
     "email": "woong.jun@gmail.com",
