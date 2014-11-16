@@ -1,5 +1,5 @@
 /*
- *  JavaScript porting of Markus Kuhn's wcwidth()
+ *  wcwidth.js: a javascript porting of Markus Kuhn's wcwidth()
  */
 
 "use strict"

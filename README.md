@@ -1,7 +1,7 @@
-wcwidth: a javascript porting of C's wcwidth()
-==============================================
+wcwidth.js: a javascript porting of C's wcwidth()
+=================================================
 
-`wcwidth` is a simple JavaScript porting of `wcwidth()` implemented in C
+`wcwidth.js` is a simple javascript porting of `wcwidth()` implemented in C
 [by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
 
 [`wcwidth()`](http://www.opengroup.org/onlinepubs/007904975/functions/wcwidth.html)
@@ -13,8 +13,8 @@ devices like terminals. Markus's implementation assumes wide characters to be
 encoded in [ISO 10646](http://en.wikipedia.org/wiki/Universal_Character_Set),
 which is _almost_ true for JavaScript; _almost_ because JavaScript uses
 [UCS-2](http://en.wikipedia.org/wiki/UTF-16) and has problems with surrogate
-pairs. `wcwidth` converts surrogate pairs to Unicode code points to handle them
-correctly.
+pairs. `wcwidth.js` converts surrogate pairs to Unicode code points to handle
+them correctly.
 
 Following the original implementation, this library defines the column width of
 an ISO 10646 character as follows:
@@ -45,12 +45,12 @@ A surrogate high or low value which constitutes no pair is considered to have a
 column width of 1 according to the behavior of widespread terminals.
 
 See the
-[documentation](https://github.com/mycoboco/wcwidth/blob/master/doc/index.md)
+[documentation](https://github.com/mycoboco/wcwidth.js/blob/master/doc/index.md)
 from the C implementation for details.
 
-`wcwidth` is simple to use:
+`wcwidth.js` is simple to use:
 
-    var wcwidth = require('wcwidth')
+    var wcwidth = require('wcwidth.js')
 
     wcwidth('한글')    // 4
     wcwidth('\0')      // 0; NUL
@@ -81,8 +81,8 @@ containing an instance of `NUL` or control characters:
 
 This is useful when detecting if a string has non-printable characters.
 
-Due to the risk of monkey-patching, `wcwidth` no longer provides the `String`
-getter. Even if discouraged, you can still monkey-patch by yourself as follows:
+Due to the risk of monkey-patching, the `String` getter is no longer provided.
+Even if discouraged, you can still monkey-patch by yourself as follows:
 
     String.prototype.__defineGetter__('wcwidth', function () {
         return wcwidth(this);

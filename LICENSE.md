@@ -1,9 +1,9 @@
-wcwidth: a javascript portng of C's wcwidth()
-=============================================
+wcwidth.js: a javascript portng of C's wcwidth()
+================================================
 
 Copyright (C) 2012-2014 by Jun Woong and Tim Oxley.
 
-This package is a JavaScript porting of `wcwidth()` implementation
+This package is a javascript porting of `wcwidth()` implementation
 [by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of

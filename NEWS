@@ -1,10 +1,11 @@
-What's new in wcwidth?
-======================
+What's new in wcwidth.js?
+=========================
 
+2014-11-16  1.0.0 released
 2014-09-18  Restructued code and added tests by Tim Oxley
-2014-04-26  0.0.4 released.
-2012-12-13  0.0.3 released.
-2012-12-12  Moved the repository to git/github.
-2012-10-16  0.0.2 released.
-2012-10-16  Using `wcwidth' without invoking it checked.
-2012-10-12  First release.
+2014-04-26  0.0.4 released
+2012-12-13  0.0.3 released
+2012-12-12  Moved the repository to git/github
+2012-10-16  0.0.2 released
+2012-10-16  Using `wcwidth' without invoking it checked
+2012-10-12  First release
