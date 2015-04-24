@@ -1,5 +1,3 @@
-.hg
-.hgtags
-.hgignore
+.gitignore
 .npmignore
 node_modules/
