@@ -81,7 +81,7 @@ containing an instance of `NUL` or control characters:
 
 This is useful when detecting if a string has non-printable characters.
 
-Due to the risk of monkey-patching, the `String` getter is no longer provided.
+Due to the risk of monkey-patching, no `String` getter is provided anymore.
 Even if discouraged, you can still monkey-patch by yourself as follows:
 
     String.prototype.__defineGetter__('wcwidth', function () {
