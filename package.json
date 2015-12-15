@@ -23,6 +23,7 @@
     "url": "https://github.com/mycoboco/wcwidth.js/issues",
     "email": "woong.jun@gmail.com"
   },
+  "license": "MIT",
   "main": "index.js",
   "dependencies": {
     "defaults": "^1.0.2"
@@ -31,7 +32,6 @@
     "tape": "^4.2.0"
   },
   "engines": { "node": ">=0.8.0" },
-  "licenses": "MIT",
   "keywords": [
     "wide character", "wc",
     "wide character string", "wcs",
