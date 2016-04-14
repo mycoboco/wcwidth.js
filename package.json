@@ -25,24 +25,20 @@
   },
   "license": "MIT",
   "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
   "dependencies": {
     "defaults": "^1.0.2"
   },
   "devDependencies": {
     "tape": "^4.2.0"
   },
-  "engines": { "node": ">=0.8.0" },
+  "engines": { "node": ">=0.12.6" },
   "keywords": [
     "wide character", "wc",
     "wide character string", "wcs",
     "terminal", "width",
     "wcwidth", "wcswidth"
-  ],
-  "directories": {
-    "doc": "doc",
-    "test": "test"
-  },
-  "scripts": {
-    "test": "tape test/*.js"
-  }
+  ]
 }
