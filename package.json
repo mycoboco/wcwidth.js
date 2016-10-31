@@ -34,6 +34,9 @@
   "devDependencies": {
     "tape": "^4.2.0"
   },
+  "files": [
+    "combining.js",
+  ],
   "engines": { "node": ">=0.12.6" },
   "keywords": [
     "wide character", "wc",
