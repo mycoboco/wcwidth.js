@@ -28,9 +28,7 @@
   "scripts": {
     "test": "tape test/*.js"
   },
-  "dependencies": {
-    "defaults": "^1.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "tape": "^4.2.0"
   },
