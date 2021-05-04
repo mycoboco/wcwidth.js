@@ -35,11 +35,17 @@
   "files": [
     "combining.js"
   ],
-  "engines": { "node": ">=4.9.1" },
+  "engines": {
+    "node": ">=4.9.1"
+  },
   "keywords": [
-    "wide character", "wc",
-    "wide character string", "wcs",
-    "terminal", "width",
-    "wcwidth", "wcswidth"
+    "wide character",
+    "wc",
+    "wide character string",
+    "wcs",
+    "terminal",
+    "width",
+    "wcwidth",
+    "wcswidth"
   ]
 }
