@@ -30,13 +30,15 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "eslint": "^8.41.0",
+    "eslint-config-google": "^0.14.0",
     "tape": "^4.2.0"
   },
   "files": [
     "combining.js"
   ],
   "engines": {
-    "node": ">=4.9.1"
+    "node": ">=16.15.1"
   },
   "keywords": [
     "wide character",

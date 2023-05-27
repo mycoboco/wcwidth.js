@@ -1,6 +1,8 @@
 wcwidth.js: a javascript porting of C's wcwidth()
 =================================================
 
+> _Stick to version `1.0.2` if need to support node.js <`16.15.1`._
+
 `wcwidth.js` is a simple javascript porting of `wcwidth()` implemented in C
 [by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
 
@@ -18,6 +20,7 @@ them correctly.
 
 Following the original implementation, this library defines the column width of
 an ISO 10646 character as follows:
+
 - the null character (`U+0000`) has a column width of `opts.null` (whose
   default value is 0);
 - other
@@ -50,51 +53,52 @@ from the C implementation for details.
 
 `wcwidth.js` is simple to use:
 
-    var wcwidth = require('wcwidth.js')
+    const wcwidth = require('wcwidth.js');
 
-    wcwidth('한글')    // 4
-    wcwidth('\0')      // 0; NUL
-    wcwidth('\t')      // 0; control characters
+    wcwidth('한글'); // 4
+    wcwidth('\0'); // 0; NUL
+    wcwidth('\t'); // 0; control characters
 
 If you plan to replace `NUL` or control characters with, say, `???` before
 printing, use `wcwidth.config()` that returns a closure to run `wcwidth` with
 your configuration:
 
-    var mywidth = wcwidth.config({
-        nul:     3,
-        control: 3
+    const mywidth = wcwidth.config({
+      nul: 3,
+      control: 3,
     })
 
-    mywidth('\0\f')      // 6
-    mywidth('한\t글')    // 7
+    mywidth('\0\f'); // 6
+    mywidth('한\t글'); // 7
 
 Setting these options to -1 gives a function that returns -1 for a string
 containing an instance of `NUL` or control characters:
 
-    mywidth = wcwidth.config({
-        nul:     0,
-        control: -1
-    })
+    const mywidth = wcwidth.config({
+      nul: 0,
+      control: -1,
+    });
 
-    mywidth('java\0script')    // 10
-    mywidth('java\tscript')    // -1
+    mywidth('java\0script'); // 10
+    mywidth('java\tscript'); // -1
 
 This is useful when detecting if a string has non-printable characters.
 
 Due to the risk of monkey-patching, no `String` getter is provided anymore.
 Even if discouraged, you can still monkey-patch by yourself as follows:
 
-    String.prototype.__defineGetter__('wcwidth', function () {
-        return wcwidth(this);
-    })
-    '한글'.wcwidth    // 4
+    String.prototype.__defineGetter__(
+      'wcwidth',
+      () => wcwidth(this),
+    );
+    '한글'.wcwidth; // 4
 
 JavaScript has no character type, thus meaningless to have two versions of
 `wcwidth` while POSIX does for C. `wcwidth` also accepts a code value obtained
 by `charCodeAt()`:
 
-    wcwidth('한')                  // prints 2
-    wcwidth('글'.charCodeAt(0))    // prints 2
+    wcwidth('한'); // prints 2
+    wcwidth('글'.charCodeAt(0)); // prints 2
 
 `INSTALL.md` explains how to build and install the library. For the copyright
 issues, see the accompanying `LICENSE.md` file.
