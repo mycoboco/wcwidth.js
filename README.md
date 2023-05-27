@@ -89,7 +89,7 @@ Even if discouraged, you can still monkey-patch by yourself as follows:
 
     String.prototype.__defineGetter__(
       'wcwidth',
-      function () { return wcswidth(this.valueOf()) },
+      function () { return wcwidth(this.valueOf()) },
     );
     '한글'.wcwidth; // 4
 
