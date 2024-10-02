@@ -1,6 +1,9 @@
 What's new in wcwidth.js?
 =========================
 
+2023-05-28  1.1.2 released to support mordern JS
+2021-09-06  1.0.2 released
+2021-05-05  1.0.1 released
 2014-11-16  1.0.0 released
 2014-09-18  Restructued code and added tests by Tim Oxley
 2014-04-26  0.0.4 released

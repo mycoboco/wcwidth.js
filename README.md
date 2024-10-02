@@ -53,11 +53,13 @@ from the C implementation for details.
 
 `wcwidth.js` is simple to use:
 
-    const wcwidth = require('wcwidth.js');
+    import wcwidth from 'wcwidth.js';
 
     wcwidth('한글'); // 4
     wcwidth('\0'); // 0; NUL
     wcwidth('\t'); // 0; control characters
+
+*Use `wcwidth.js@1.1.2` for CommonJS modules.*
 
 If you plan to replace `NUL` or control characters with, say, `???` before
 printing, use `wcwidth.config()` that returns a closure to run `wcwidth` with
@@ -66,7 +68,7 @@ your configuration:
     const mywidth = wcwidth.config({
       nul: 3,
       control: 3,
-    })
+    });
 
     mywidth('\0\f'); // 6
     mywidth('한\t글'); // 7
@@ -84,12 +86,16 @@ containing an instance of `NUL` or control characters:
 
 This is useful when detecting if a string has non-printable characters.
 
-Due to the risk of monkey-patching, no `String` getter is provided anymore.
-Even if discouraged, you can still monkey-patch by yourself as follows:
+When necessary, you can add to `String.prototype` a `wcwidth` getter as follows:
 
-    String.prototype.__defineGetter__(
+    Object.defineProperty(
+      String.prototype,
       'wcwidth',
-      function () { return wcwidth(this.valueOf()) },
+      {
+        get() {
+          return wcwidth(this.valueOf());
+        },
+      },
     );
     '한글'.wcwidth; // 4
 
@@ -104,4 +110,4 @@ by `charCodeAt()`:
 issues, see the accompanying `LICENSE.md` file.
 
 If you have a question or suggestion, do not hesitate to contact me via email
-(woong.jun at gmail.com) or web (http://code.woong.org/).
+(woong.jun at gmail.com) or [web](http://code.woong.org/).

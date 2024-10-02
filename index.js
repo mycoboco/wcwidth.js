@@ -2,7 +2,7 @@
  *  wcwidth.js: a javascript porting of Markus Kuhn's wcwidth()
  */
 
-const combining = require('./combining');
+import combining from './combining.js';
 
 const DEFAULTS = {
   nul: 0,
@@ -79,9 +79,8 @@ function wcswidth(str, opts) {
   return s;
 }
 
-module.exports = (str) => wcswidth(str, DEFAULTS);
-
-module.exports.config = (opts = {}) => {
+const _ = (str) => wcswidth(str, DEFAULTS);
+_.config = (opts = {}) => {
   opts = {
     ...DEFAULTS,
     ...opts,
@@ -89,5 +88,7 @@ module.exports.config = (opts = {}) => {
 
   return (str) => wcswidth(str, opts);
 };
+
+export default _;
 
 // end of wcwidth.js

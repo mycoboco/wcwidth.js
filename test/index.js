@@ -4,8 +4,8 @@
  *  test cases for wcwidth
  */
 
-const wcwidth = require('../');
-const test = require('tape');
+import wcwidth from '../index.js';
+import {default as test} from 'tape';
 
 test('handles regular strings', (t) => {
   t.strictEqual(wcwidth('abc'), 3);

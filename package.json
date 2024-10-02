@@ -24,6 +24,7 @@
     "email": "woong.jun@gmail.com"
   },
   "license": "MIT",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "tape test/*.js"
@@ -37,7 +38,7 @@
     "combining.js"
   ],
   "engines": {
-    "node": ">=16.15.1"
+    "node": ">=20.0.0"
   },
   "keywords": [
     "wide character",
