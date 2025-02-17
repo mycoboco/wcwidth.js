@@ -4,17 +4,17 @@ wcwidth.js: a javascript porting of C's wcwidth()
 > _Stick to version `1.0.2` if need to support node.js <`16.15.1`._
 
 `wcwidth.js` is a simple javascript porting of `wcwidth()` implemented in C
-[by Markus Kuhn](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
+[by Markus Kuhn](https://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c).
 
-[`wcwidth()`](http://www.opengroup.org/onlinepubs/007904975/functions/wcwidth.html)
+[`wcwidth()`](https://www.opengroup.org/onlinepubs/007904975/functions/wcwidth.html)
 and its string version,
-[`wcswidth()`](http://www.opengroup.org/onlinepubs/007904975/functions/wcswidth.html)
+[`wcswidth()`](https://www.opengroup.org/onlinepubs/007904975/functions/wcswidth.html)
 are defined by IEEE Std 1002.1-2001, a.k.a. POSIX.1-2001, and return the number
 of columns used to represent a wide character and string on fixed-width output
 devices like terminals. Markus's implementation assumes wide characters to be
-encoded in [ISO 10646](http://en.wikipedia.org/wiki/Universal_Character_Set),
+encoded in [ISO 10646](https://en.wikipedia.org/wiki/Universal_Character_Set),
 which is _almost_ true for JavaScript; _almost_ because JavaScript uses
-[UCS-2](http://en.wikipedia.org/wiki/UTF-16) and has problems with surrogate
+[UCS-2](https://en.wikipedia.org/wiki/UTF-16) and has problems with surrogate
 pairs. `wcwidth.js` converts surrogate pairs to Unicode code points to handle
 them correctly.
 
@@ -24,11 +24,11 @@ an ISO 10646 character as follows:
 - the null character (`U+0000`) has a column width of `opts.null` (whose
   default value is 0);
 - other
-  [C0/C1 control characters](http://en.wikipedia.org/wiki/C0_and_C1_control_codes)
+  [C0/C1 control characters](https://en.wikipedia.org/wiki/C0_and_C1_control_codes)
   and `DEL` will lead to a column width of `opts.control` (whose default value
   is 0);
 - non-spacing and enclosing combining characters
-  ([general category code](http://www.unicode.org/reports/tr44/#GC_Values_Table)
+  ([general category code](https://www.unicode.org/reports/tr44/#GC_Values_Table)
   `Mn` or `Me`) in the Unicode database) have a column width of 0;
 - `SOFT HYPHEN` (`U+00AD`) has a column width of 1;
 - other format characters (general category code `Cf` in the Unicode database)
@@ -37,11 +37,11 @@ an ISO 10646 character as follows:
   column width of 0;
 - spacing characters in the East Asian Wide (`W`) or East Asian Full-width
   (`F`) category as defined in
-  [Unicode Technical Report #11](http://www.unicode.org/reports/tr11/) have a
+  [Unicode Technical Report #11](https://www.unicode.org/reports/tr11/) have a
   column width of 2; and
 - all remaining characters (including all printable
-  [ISO 8859-1](http://en.wikipedia.org/wiki/ISO/IEC_8859-1) and
-  [WGL4 characters](http://en.wikipedia.org/wiki/Windows_Glyph_List_4), Unicode
+  [ISO 8859-1](https://en.wikipedia.org/wiki/ISO/IEC_8859-1) and
+  [WGL4 characters](https://en.wikipedia.org/wiki/Windows_Glyph_List_4), Unicode
   control characters, etc.) have a column width of 1.
 
 A surrogate high or low value which constitutes no pair is considered to have a
@@ -110,4 +110,4 @@ by `charCodeAt()`:
 issues, see the accompanying `LICENSE.md` file.
 
 If you have a question or suggestion, do not hesitate to contact me via email
-(woong.jun at gmail.com) or [web](http://code.woong.org/).
+(woong.jun at gmail.com) or [web](https://code.woong.org/).

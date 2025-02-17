@@ -2,27 +2,28 @@ wcwidth.js: a javascript porting of C's wcwidth()
 =================================================
 
 The following explanation comes from the
-[original C implementation](http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c) with
-editorial changes for [markdown](http://daringfireball.net/projects/markdown/):
+[original C implementation](https://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c) with
+editorial changes for
+[markdown](https://daringfireball.net/projects/markdown/):
 
 This is an implementation of
-[`wcwidth()`](http://www.opengroup.org/onlinepubs/007904975/functions/wcwidth.html)
+[`wcwidth()`](https://www.opengroup.org/onlinepubs/007904975/functions/wcwidth.html)
 and
-[`wcswidth()`](http://www.opengroup.org/onlinepubs/007904975/functions/wcswidth.html)
+[`wcswidth()`](https://www.opengroup.org/onlinepubs/007904975/functions/wcswidth.html)
 (defined in IEEE Std 1002.1-2001) for
-[Unicode](http://en.wikipedia.org/wiki/Unicode).
+[Unicode](https://en.wikipedia.org/wiki/Unicode).
 
 In fixed-width output devices, Latin characters all occupy a single "cell"
 position of equal width, whereas
-[ideographic CJK characters](http://en.wikipedia.org/wiki/CJK_Unified_Ideographs)
+[ideographic CJK characters](https://en.wikipedia.org/wiki/CJK_Unified_Ideographs)
 occupy two such cells. Interoperability between terminal-line applications and
 (teletype-style) character terminals using the
-[UTF-8 encoding](http://en.wikipedia.org/wiki/UTF-8) requires agreement on
+[UTF-8 encoding](https://en.wikipedia.org/wiki/UTF-8) requires agreement on
 which character should advance the cursor by how many cell positions. No
 established formal standards exist at present on which Unicode character shall
 occupy how many cell positions on character terminals. These routines are a
 first attempt of defining such behavior based on simple rules applied to data
-provided by the [Unicode Consortium](http://www.unicode.org/).
+provided by the [Unicode Consortium](https://www.unicode.org/).
 
 For some graphical characters, the Unicode standard explicitly defines a
 character-cell width via the definition of the East Asian FullWidth (`F`), Wide
@@ -51,6 +52,6 @@ behavior of UTF-8 character terminals will require a careful analysis not only
 of each Unicode character, but also of each presentation form, something the
 author of these routines has avoided to do so far.
 
-[http://www.unicode.org/unicode/reports/tr11/](http://www.unicode.org/unicode/reports/tr11/)
+[https://www.unicode.org/unicode/reports/tr11/](https://www.unicode.org/unicode/reports/tr11/)
 
 _Markus Kuhn_ -- 2007-05-26 (Unicode 5.0)
